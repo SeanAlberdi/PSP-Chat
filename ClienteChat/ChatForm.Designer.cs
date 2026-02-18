@@ -35,40 +35,48 @@
             // 
             // lstMensajes
             // 
+            lstMensajes.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lstMensajes.FormattingEnabled = true;
-            lstMensajes.ItemHeight = 15;
-            lstMensajes.Location = new Point(12, 16);
+            lstMensajes.HorizontalScrollbar = true;
+            lstMensajes.ItemHeight = 21;
+            lstMensajes.Location = new Point(12, 66);
             lstMensajes.Name = "lstMensajes";
-            lstMensajes.Size = new Size(762, 349);
+            lstMensajes.Size = new Size(762, 256);
             lstMensajes.TabIndex = 0;
+            lstMensajes.SelectedIndexChanged += lstMensajes_SelectedIndexChanged;
             // 
             // txtMensaje
             // 
-            txtMensaje.Location = new Point(12, 372);
+            txtMensaje.Cursor = Cursors.IBeam;
+            txtMensaje.Location = new Point(12, 331);
+            txtMensaje.Multiline = true;
             txtMensaje.Name = "txtMensaje";
-            txtMensaje.Size = new Size(762, 23);
+            txtMensaje.Size = new Size(626, 23);
             txtMensaje.TabIndex = 1;
             // 
             // btnEnviar
             // 
-            btnEnviar.Location = new Point(12, 404);
+            btnEnviar.Cursor = Cursors.Hand;
+            btnEnviar.Location = new Point(644, 331);
             btnEnviar.Name = "btnEnviar";
-            btnEnviar.Size = new Size(762, 23);
+            btnEnviar.Size = new Size(130, 23);
             btnEnviar.TabIndex = 2;
             btnEnviar.Text = "Bidali";
             btnEnviar.UseVisualStyleBackColor = true;
-            btnEnviar.Click += this.btnEnviar_Click;
+            btnEnviar.Click += btnEnviar_Click;
             // 
             // ChatForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(21, 84, 100);
             ClientSize = new Size(800, 450);
             Controls.Add(btnEnviar);
             Controls.Add(txtMensaje);
             Controls.Add(lstMensajes);
             Name = "ChatForm";
-            Text = "Form2";
+            Text = "Txat";
+            Load += ChatForm_Load_1;
             ResumeLayout(false);
             PerformLayout();
         }

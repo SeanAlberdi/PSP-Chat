@@ -98,5 +98,15 @@ namespace ClienteChat
                 }
             }
         }
+
+        private void lstMensajes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ChatForm_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
