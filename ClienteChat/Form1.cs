@@ -37,15 +37,12 @@ namespace ClienteChat
             // 2. DECIDIR CÓMO LOGUEARSE
             if (usarApi)
             {
-                // MODO API
                 btnLogin.Enabled = false;
                 loginExitoso = await LoginConApi(usuario, passwordHasheada);
                 btnLogin.Enabled = true;
             }
             else
             {
-                // MODO HARDCODED
-
                 string hashEsperado = ComputeSha256Hash("1234");
 
                 if (usuario != "" && passwordHasheada == hashEsperado)

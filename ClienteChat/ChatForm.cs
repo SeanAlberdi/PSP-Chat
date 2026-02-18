@@ -42,7 +42,6 @@ namespace ClienteChat
             }
             catch (Exception ex)
             {
-                // AQUÍ ESTÁ LA CLAVE: Nos dirá exactamente qué pasa
                 MessageBox.Show("ERROR CRÍTICO AL CONECTAR: \n" + ex.Message);
 
                 // Si falla, cerramos el chat automáticamente para evitar errores
@@ -85,7 +84,6 @@ namespace ClienteChat
                     string mensaje = reader.ReadLine();
                     if (mensaje != null)
                     {
-                        // Invoke para tocar la UI desde otro hilo
                         this.Invoke(new MethodInvoker(delegate
                         {
                             lstMensajes.Items.Add(mensaje);
