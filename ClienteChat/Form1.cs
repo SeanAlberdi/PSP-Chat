@@ -4,14 +4,14 @@ using System.Text;
 using System.Net.Http; // Necesario para llamar a la API
 using System.Windows.Forms;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace ClienteChat
 {
     public partial class Form1 : Form
     {
-        // Cuando tengas la API lista, cambia esto a 'true'
-        private bool usarApi = false;
-        private const string URL_API_LOGIN = "https://tu-api.com/api/login";
+        private bool usarApi = true;
+        private const string URL_API_LOGIN = "http://3.217.187.33:8080/api/users/login";
 
         public Form1()
         {
@@ -31,6 +31,7 @@ namespace ClienteChat
 
             // 1. HASHEAR LA CONTRASEÑA
             string passwordHasheada = ComputeSha256Hash(password);
+            //string passwordHasheada = password;
 
             bool loginExitoso = false;
 
@@ -84,16 +85,24 @@ namespace ClienteChat
         {
             try
             {
+                var jsonData = $"{{\"username\": \"{user}\", \"password\": \"{passHash}\"}}";
+                var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
                 using (HttpClient client = new HttpClient())
+                using (HttpResponseMessage erantzuna = await client.PostAsync(URL_API_LOGIN, content))
                 {
-                    var jsonData = $"{{\"usuario\": \"{user}\", \"hash\": \"{passHash}\"}}";
-
-                    var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-
-                    await Task.Delay(100);
-                    MessageBox.Show("El modo API está activado pero no hay URL configurada.");
-                    return false;
+                    Console.WriteLine(erantzuna);
+                    if (erantzuna.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        Debug.WriteLine("login bien");
+                        return true;
+                    }
+                    else
+                    {
+                        Debug.WriteLine("login mal");
+                        return false;
+                    }
                 }
+                
             }
             catch (Exception ex)
             {
